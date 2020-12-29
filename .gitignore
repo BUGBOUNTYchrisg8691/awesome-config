@@ -98,3 +98,8 @@ zsdoc/data
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,lua,zsh
 
+awesome-wm-widgets/
+network/
+themes/
+vicious/
+
