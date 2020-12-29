@@ -25,6 +25,9 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 -- Vicious import
 local vicious = require("vicious")
 
+-- Lain import
+local lain = require("lain")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -62,8 +65,8 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "myzenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 -- terminal = "x-terminal-emulator"
-terminal = "tilix"
-editor = os.getenv("EDITOR") or "editor"
+terminal = os.getenv("TERMINAL") or "tilix"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 proglauncher = "rofi"
 -- Default modkey.
@@ -360,10 +363,12 @@ globalkeys = gears.table.join(
     -- Prompt
     -- awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
     --           {description = "run prompt", group = "launcher"}),
-
+    
     -- Custom Rofi Launcher Binding
-    awful.key({ modkey }, "r", function ()
-            awful.util.spawn("/usr/local/bin/rofirun") end,
+    awful.key({ modkey }, "r",
+              function ()
+                  awful.util.spawn("/usr/local/bin/rofirun")
+              end,
               {description = "use rofi", group = "launcher"}),
 
     awful.key({ modkey }, "x",
@@ -377,7 +382,10 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "p",
+              function()
+                  menubar.show()
+              end,
               {description = "show the menubar", group = "launcher"})
 )
 
